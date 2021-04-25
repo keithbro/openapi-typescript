@@ -32,10 +32,10 @@ export function transformOperationObj(
   }
 
   if (operation.responses) {
-    output += `  ${readonly}responses: {\n  ${transformResponsesObj(operation.responses, {
-      immutableTypes,
-    })}\n  }\n`;
+    const responses = Object.entries(operation.responses).map((r) => transformResponsesObj(r, { immutableTypes }));
+    output += `  ${readonly}responses: ${responses.join(" | ")}`;
   }
+  //console.log(output);
 
   if (operation.requestBody) {
     if (isRef(operation.requestBody)) {
@@ -48,6 +48,14 @@ export function transformOperationObj(
       output += `  }\n`; // close requestBody
     }
   }
+  // try {
+  //   format(output, {
+  //     parser: "typescript",
+  //   });
+  // } catch (e) {
+  //   console.error(e);
+  // console.log(output);
+  //}
 
   return output;
 }

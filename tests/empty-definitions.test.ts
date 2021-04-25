@@ -55,7 +55,7 @@ export interface operations {
     };
     responses: {
       /** Invalid input */
-      405: unknown;
+      status: 405;
     };
   };
 }
@@ -87,7 +87,7 @@ export interface operations {
     };
     readonly responses: {
       /** Invalid input */
-      readonly 405: unknown;
+      readonly status: 405;
     };
   };
 }

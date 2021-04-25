@@ -74,12 +74,11 @@ describe("transformPathsObj", () => {
   "/": {
     get: {
       responses: {
-        200: {
-          content: {
-            "application/json": {
-              title: string;
-              body: string;
-            };
+        status: 200;
+        content: {
+          "application/json": {
+            title: string;
+            body: string;
           };
         };
       };
@@ -93,21 +92,22 @@ describe("transformPathsObj", () => {
           p?: number;
         };
       };
-      responses: {
-        200: {
-          content: {
-            "application/json": {
-              results?: components["schemas"]["SearchResult"][];
-              total: number;
+      responses:
+        | {
+            status: 200;
+            content: {
+              "application/json": {
+                results?: components["schemas"]["SearchResult"][];
+                total: number;
+              };
+            };
+          }
+        | {
+            status: 404;
+            content: {
+              "application/json": components["schemas"]["ErrorResponse"];
             };
           };
-        };
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorResponse"];
-          };
-        };
-      };
     };
   };
 }\n`);
@@ -116,12 +116,11 @@ describe("transformPathsObj", () => {
   readonly "/": {
     readonly get: {
       readonly responses: {
-        readonly 200: {
-          readonly content: {
-            readonly "application/json": {
-              readonly title: string;
-              readonly body: string;
-            };
+        readonly status: 200;
+        readonly content: {
+          readonly "application/json": {
+            readonly title: string;
+            readonly body: string;
           };
         };
       };
@@ -135,21 +134,22 @@ describe("transformPathsObj", () => {
           readonly p?: number;
         };
       };
-      readonly responses: {
-        readonly 200: {
-          readonly content: {
-            readonly "application/json": {
-              readonly results?: readonly components["schemas"]["SearchResult"][];
-              readonly total: number;
+      readonly responses:
+        | {
+            readonly status: 200;
+            readonly content: {
+              readonly "application/json": {
+                readonly results?: readonly components["schemas"]["SearchResult"][];
+                readonly total: number;
+              };
+            };
+          }
+        | {
+            readonly status: 404;
+            readonly content: {
+              readonly "application/json": components["schemas"]["ErrorResponse"];
             };
           };
-        };
-        readonly 404: {
-          readonly content: {
-            readonly "application/json": components["schemas"]["ErrorResponse"];
-          };
-        };
-      };
     };
   };
 }\n`);
@@ -304,12 +304,11 @@ describe("transformPathsObj", () => {
   "/tests": {
     post: {
       responses: {
-        201: {
-          content: {
-            "application/json": {
-              id: string;
-              title: string;
-            };
+        status: 201;
+        content: {
+          "application/json": {
+            id: string;
+            title: string;
           };
         };
       };
